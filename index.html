@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Pacifico&display=swap');
+       
         body {
-            background: linear-gradient(to bottom, #fff9c4, #fff);
-            color: #d100d1;
+            background: linear-gradient(135deg, #ffe6f0, #fff0f5);
+            color: #ff1493;
             font-family: 'Dancing Script', cursive;
             text-align: center;
             display: flex;
@@ -18,26 +18,58 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         .image {
-            width: 250px;
+            width: 280px;
             height: auto;
             margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.2);
+            animation: float 3s infinite ease-in-out;
         }
         .button {
-            background-color: #ff00ff;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 15px 30px;
             margin: 10px;
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
-            border-radius: 25px;
-            transition: transform 0.2s ease-in-out, background-color 0.3s;
+            border-radius: 50px;
+            font-family: 'Pacifico', cursive;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
         }
         .button:hover {
-            transform: scale(1.1);
-            background-color: #d100d1;
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floating-heart linear infinite;
+            color: #ff69b4;
+            z-index: -1;
+        }
+        @keyframes floating-heart {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -46,19 +78,28 @@
     <h1>Will you be my Valentine?</h1>
     <button class="button" onclick="nextPage()">Yes</button>
     <button class="button" onclick="nextPage()">Yes</button>
-
+   
     <script>
-        function nextPage() {
-            // Save the body content before overwriting
-            const previousContent = document.body.innerHTML;
+        // Add floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        
+        setInterval(createHeart, 300);
 
-            // Replace with the second page content
+        function nextPage() {
             document.body.innerHTML = `
                 <style>
                     body {
-                        background: #f4a3c5;
+                        background: linear-gradient(135deg, #ffe6f0, #ffd1dc);
                         text-align: center;
-                        color: white;
+                        color: #ff1493;
                         font-family: 'Dancing Script', cursive;
                         display: flex;
                         flex-direction: column;
@@ -69,36 +110,52 @@
                         position: relative;
                         overflow: hidden;
                     }
-                    @keyframes glitter {
-                        0% { opacity: 0.8; transform: translateY(0); }
-                        50% { opacity: 0.4; transform: translateY(10px); }
-                        100% { opacity: 0.8; transform: translateY(0); }
+                    .image {
+                        width: 280px;
+                        height: auto;
+                        border-radius: 20px;
+                        box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+                        animation: float 3s infinite ease-in-out;
                     }
-                    .glitter {
+                    h2 {
+                        font-size: 2.5em;
+                        margin: 20px 0;
+                        text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.2);
+                        animation: pulse 2s infinite;
+                    }
+                    p {
+                        font-size: 1.8em;
+                        margin: 10px 0;
+                        text-shadow: 1px 1px 2px rgba(255, 20, 147, 0.2);
+                    }
+                    .sparkle {
                         position: absolute;
-                        width: 5px;
-                        height: 5px;
-                        background: white;
+                        width: 4px;
+                        height: 4px;
+                        background: #fff;
                         border-radius: 50%;
-                        animation: glitter 2s infinite ease-in-out;
+                        animation: sparkle 1.5s infinite ease-in-out;
+                    }
+                    @keyframes sparkle {
+                        0% { transform: scale(0) rotate(0deg); opacity: 0; }
+                        50% { transform: scale(1) rotate(180deg); opacity: 1; }
+                        100% { transform: scale(0) rotate(360deg); opacity: 0; }
                     }
                 </style>
                 <img src="https://storage.ko-fi.com/cdn/useruploads/display/33acd27b-c333-4493-ad54-d5dfac0a0f96_capybarababy.png" class="image">
-                <h2>Congratulations!</h2>
-                <p>You have booked a movie date with me on 16th February (dinner is on the house).</p>
+                <h2>Yay! You made me so happy! 💖</h2>
+                <p>You have booked a movie date with me on 16th February<br>(dinner is on the house) 🎬🍝</p>
             `;
 
-            // Add the glitter effect after the page content is updated
-            (function addGlitter() {
-                for (let i = 0; i < 50; i++) {
-                    let glitter = document.createElement('div');
-                    glitter.className = 'glitter';
-                    glitter.style.left = Math.random() * 100 + 'vw';
-                    glitter.style.top = Math.random() * 100 + 'vh';
-                    glitter.style.animationDuration = (Math.random() * 2 + 1) + 's';
-                    document.body.appendChild(glitter);
-                }
-            })();
+            // Add sparkles
+            for (let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.top = Math.random() * 100 + 'vh';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(sparkle);
+            }
         }
     </script>
 </body>
