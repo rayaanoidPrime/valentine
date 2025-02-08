@@ -1,0 +1,67 @@
+/* Custom styles to complement Bootstrap */
+:root {
+    scroll-behavior: smooth;
+}
+
+/* Navigation */
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(var(--bs-dark-rgb), 0.9);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(45deg, var(--bs-dark), var(--bs-secondary));
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Cards */
+.card {
+    transition: transform 0.3s ease;
+    border: none;
+    background-color: var(--bs-dark);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Feather Icons */
+.feather {
+    width: 24px;
+    height: 24px;
+    stroke: var(--bs-secondary);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+/* Form styling */
+.form-control {
+    border: 1px solid var(--bs-secondary);
+    background-color: var(--bs-dark);
+}
+
+.form-control:focus {
+    border-color: var(--bs-info);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-info-rgb), 0.25);
+}
+
+/* Smooth scroll padding for fixed header */
+section {
+    scroll-margin-top: 70px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+    }
+    
+    .navbar {
+        background-color: var(--bs-dark);
+    }
+}
